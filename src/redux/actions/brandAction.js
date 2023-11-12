@@ -39,7 +39,7 @@ export const getOneBrand = (id) => async (dispatch) => {
 //get all Brand with pagination
 export const getAllBrandPage = (page) => async (dispatch) => {
   try {
-    const response = await useGetData(`/api/v1/brands?limit=4&page=${page}`);
+    const response = await useGetData(`/api/v1/brands?limit=10&page=${page}`);
     dispatch({
       type: GET_ALL_BRAND,
       payload: response,
