@@ -132,7 +132,7 @@ const AdminAddProducts = () => {
           </select>
           <div className="text-form mt-3 "> الالوان المتاحه للمنتج</div>
           <div className="mt-1 d-flex">
-            {colors.length >= 1
+            {colors && colors.length >= 1
               ? colors.map((color, index) => {
                   return (
                     <div
