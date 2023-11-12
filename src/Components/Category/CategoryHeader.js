@@ -19,6 +19,7 @@ const CategoryHeader = () => {
               ? items.map((item, index) => {
                   return (
                     <Link
+                      key={index}
                       to={`/products/category/${item._id}`}
                       style={{ textDecoration: "none" }}
                     >

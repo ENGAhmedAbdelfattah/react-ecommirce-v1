@@ -20,18 +20,18 @@ const useViewProductsDetalis = (prodID) => {
   const productLike = useSelector((state) => state.allproducts.productLike);
   //to show products item
   let item = [];
-  if (oneProducts.data) item = oneProducts.data;
+  if (oneProducts && oneProducts.data) item = oneProducts.data;
   else item = [];
 
   useEffect(() => {
-    if (item.category) dispatch(getOneCategory(item.category));
-    if (item.brand) dispatch(getOneBrand(item.brand));
-    if (item.category) dispatch(getProductLike(item.category));
+    if (item && item.category) dispatch(getOneCategory(item.category));
+    if (item && item.brand) dispatch(getOneBrand(item.brand));
+    if (item && item.category) dispatch(getProductLike(item.category));
   }, [item]);
 
   //to view images gallery
   let images = [];
-  if (item.images)
+  if (item && item.images)
     images = item.images.map((img) => {
       return { original: img };
     });
@@ -41,12 +41,12 @@ const useViewProductsDetalis = (prodID) => {
 
   //to show category item
   let cat = [];
-  if (oneCategory.data) cat = oneCategory.data;
+  if (oneCategory && oneCategory.data) cat = oneCategory.data;
   else cat = [];
 
   //to show brand item
   let brand = [];
-  if (oneBrand.data) brand = oneBrand.data;
+  if (oneBrand && oneBrand.data) brand = oneBrand.data;
   else brand = [];
 
   let prod = [];

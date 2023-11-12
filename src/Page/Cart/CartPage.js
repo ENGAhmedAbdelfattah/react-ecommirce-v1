@@ -12,7 +12,7 @@ const CartPage = () => {
     couponNameRes,
     totalCartPriceAfterDiscount,
   ] = useGetAllUserCart();
-
+  console.log("cartItems => cart page: ", cartItems)
   return (
     <Container style={{ minHeight: "670px" }}>
       <Row>
@@ -20,7 +20,7 @@ const CartPage = () => {
       </Row>
       <Row className="d-flex justify-content-center">
         <Col xs="12" md="9">
-          {cartItems.length >= 1 ? (
+          {Array.isArray(cartItems) && cartItems.length >= 1 ? (
             cartItems.map((item, index) => {
               return <CartItem key={index} item={item} />;
             })

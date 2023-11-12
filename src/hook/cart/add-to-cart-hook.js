@@ -17,7 +17,7 @@ const useAddToCart = (prdID, item) => {
 
   //add product to cart
   const addToCartHandel = async () => {
-    if (item.availableColors.length >= 1) {
+    if (item && item.colors && item.colors.length >= 1) {
       if (colorText === "") {
         notify("من فضلك اختر لون اولا للمنتج", "warn");
         return;

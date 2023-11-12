@@ -26,11 +26,12 @@ const useAddRate = (id) => {
       notify("من فضلك اكتب تعليق", "error");
       return;
     }
+    
     setLoading(true);
     await dispatch(
       createReview(id, {
-        review: rateText,
-        rating: rateValue,
+        title: rateText,
+        ratings: rateValue,
       })
     );
     setLoading(false);

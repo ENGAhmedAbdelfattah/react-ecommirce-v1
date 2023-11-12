@@ -131,7 +131,6 @@ export const getAllProductsSearch = (queryString) => async (dispatch) => {
 export const getOneProduct = (id) => async (dispatch) => {
   try {
     const response = await useGetData(`/api/v1/products/${id}`);
-    console.log("response", response)
     dispatch({
       type: GET_PRODUCT_DETALIS,
       payload: response,
@@ -187,6 +186,7 @@ export const updateProducts = (id, data) => async (dispatch) => {
       `/api/v1/products/${id}`,
       data
     );
+    console.log("response updateProducts:", response);
     dispatch({
       type: UPDATE_PRODUCTS,
       payload: response,

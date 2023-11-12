@@ -23,11 +23,12 @@ const useGetAllUserCart = () => {
     get();
   }, []);
   const res = useSelector((state) => state.cartReducer.getAllUserCart);
+  console.log("res in hook", res)
   useEffect(() => {
     if (loading === false) {
       if (res && res.status === "success") {
-        setItemsNum(res.numOfCartItems);
-        setCartItems(res.data.products);
+        setItemsNum(res.numCartItems);
+        setCartItems(res.data.cartItems);
         setTotalCartPrice(res.data.totalCartPrice);
         setCartID(res.data._id);
         if (res.data.coupon) {

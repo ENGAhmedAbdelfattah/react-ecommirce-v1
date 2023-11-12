@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getOneCategory } from "../../redux/actions/subcategoryAction";
-import { getOneProduct } from "../../redux/actions/productsAction";
+import { getOneProduct, updateProducts } from "../../redux/actions/productsAction";
 import notify from "./../../hook/useNotifaction";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllCategory } from "../../redux/actions/categoryAction";
@@ -59,7 +59,7 @@ const useAdminEditProducts = (id) => {
       setQty(item.data.quantity);
       setCatID(item.data.category);
       SetBrandID(item.data.brand);
-      setColors(item.data.availableColors);
+      setColors(item.data.colors);
     }
   }, [item]);
 
@@ -200,12 +200,12 @@ const useAdminEditProducts = (id) => {
     }, 1000);
 
     Array.isArray(colors) &&
-      colors.map((color) => formData.append("availableColors", color));
+      colors.map((color) => formData.append("colors", color));
     seletedSubID.map((item) => formData.append("subcategory", item._id));
     setTimeout(async () => {
-      // setLoading(true)
-      //   await dispatch(updateProducts(id, formData))
-      //  setLoading(false)
+      setLoading(true)
+        await dispatch(updateProducts(id, formData))
+       setLoading(false)
     }, 1000);
   };
 

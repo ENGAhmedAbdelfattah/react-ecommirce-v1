@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Modal, Row } from "react-bootstrap";
 import mobile from "../../images/mobile.png";
 import deleteicon from "../../images/delete.png";
 import useDeleteCart from "../../hook/cart/delete-cart-hook";
+import { useDispatch, useSelector } from "react-redux";
+import { getOneProduct } from "../../redux/actions/productsAction";
 const CartItem = ({ item }) => {
   const [
     handelDeleteCart,
@@ -14,13 +16,17 @@ const CartItem = ({ item }) => {
     onChangeCount,
     handeleUpdateCart,
   ] = useDeleteCart(item);
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getOneProduct(item.product));
+  }, []);
+  const oneProducts = useSelector((state) => state.allproducts.oneProduct.data);
+  // console.log("oneProducts.title", oneProducts.title);
   return (
     <Col xs="12" className="cart-item-body my-2 d-flex px-2">
       <Modal show={show} onHide={handleClose}>
         <Modal.Header>
           <Modal.Title>
-            {" "}
             <div className="font">تاكيد الحذف</div>
           </Modal.Title>
         </Modal.Header>
@@ -40,14 +46,18 @@ const CartItem = ({ item }) => {
       <img
         width="160px"
         height="197px"
-        src={item.product ? item.product.imageCover : mobile}
+        src={oneProducts ? oneProducts.imageCover : mobile}
         alt=""
       />
       <div className="w-100">
         <Row className="justify-content-between">
           <Col sm="12" className=" d-flex flex-row justify-content-between">
             <div className="d-inline pt-2 cat-text">
-              {item.product.category.name || ""}
+              {(item &&
+                oneProducts &&
+                oneProducts.category &&
+                oneProducts.category.name) ||
+                ""}
             </div>
             <div
               onClick={handleShow}
@@ -62,10 +72,10 @@ const CartItem = ({ item }) => {
         <Row className="justify-content-center mt-2">
           <Col sm="12" className=" d-flex flex-row justify-content-start">
             <div className="d-inline pt-2 cat-title">
-              {item.product.title || ""}
+              {oneProducts ? oneProducts.title : ""}
             </div>
             <div className="d-inline pt-2 cat-rate me-2">
-              {item.product.ratingsAverage || 0}
+              {oneProducts ? oneProducts.ratingsAverage : 0}
             </div>
           </Col>
         </Row>
@@ -73,7 +83,8 @@ const CartItem = ({ item }) => {
           <Col sm="12" className="mt-1">
             <div className="cat-text d-inline">الماركة :</div>
             <div className="barnd-text d-inline mx-1">
-              {item.product.brand ? item.product.brand.name : ""}{" "}
+              {/* {oneProducts && oneProducts.brand ? oneProducts.brand.name : ""}{" "} */}
+              {oneProducts && oneProducts.brand ? oneProducts.brand : ""}{" "}
             </div>
           </Col>
         </Row>

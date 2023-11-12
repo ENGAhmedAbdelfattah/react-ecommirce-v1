@@ -52,7 +52,7 @@ const useDeleteCart = (item) => {
   const handeleUpdateCart = async () => {
     await dispatch(
       updateCartItem(item._id, {
-        count: itemCount,
+        quantity: itemCount,
       })
     );
 

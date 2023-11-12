@@ -86,7 +86,7 @@ const useAdminAddProducts = () => {
     setColors(newColor);
   };
 
-  //when selet category store id
+  //when select category store id
   const onSeletCategory = async (e) => {
     if (e.target.value !== 0) {
       await dispatch(getOneCategory(e.target.value));
@@ -158,7 +158,7 @@ const useAdminAddProducts = () => {
       itemImages.map((item) => formData.append("images", item));
     }, 1000);
 
-    colors.map((color) => formData.append("availableColors", color));
+    colors.map((color) => formData.append("colors", color));
     seletedSubID.map((item) => formData.append("subcategory", item._id));
     setTimeout(async () => {
       setLoading(true);

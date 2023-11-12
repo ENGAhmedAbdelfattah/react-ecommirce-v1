@@ -53,8 +53,8 @@ const useOrderPayCash = () => {
         shippingAddress: {
           details: addressDetalis.alias,
           phone: addressDetalis.phone,
-          city: "",
-          postalCode: "",
+          // city: "",
+          // postalCode: "",
         },
       })
     );

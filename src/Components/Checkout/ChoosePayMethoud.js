@@ -106,7 +106,6 @@ const ChoosePayMethoud = () => {
             onClick={handelPay}
             className="product-cart-add px-3 pt-2 d-inline me-2"
           >
-            {" "}
             اتمام الشراء
           </div>
         </Col>
