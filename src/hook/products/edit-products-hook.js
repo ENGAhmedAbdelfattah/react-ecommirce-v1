@@ -51,7 +51,7 @@ const useAdminEditProducts = (id) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (item.data) {
+    if (item && item.data) {
       setImages(item.data.images);
       setProdName(item.data.title);
       setProdDescription(item.data.description);
@@ -199,7 +199,8 @@ const useAdminEditProducts = (id) => {
       itemImages.map((item) => formData.append("images", item));
     }, 1000);
 
-    colors.map((color) => formData.append("availableColors", color));
+    Array.isArray(colors) &&
+      colors.map((color) => formData.append("availableColors", color));
     seletedSubID.map((item) => formData.append("subcategory", item._id));
     setTimeout(async () => {
       // setLoading(true)

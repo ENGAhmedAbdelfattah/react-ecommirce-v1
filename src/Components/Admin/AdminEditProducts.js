@@ -45,10 +45,7 @@ const AdminEditProducts = () => {
   return (
     <div>
       <Row className="justify-content-start ">
-        <div className="admin-content-text pb-4">
-          {" "}
-          تعديل المنتج - {prodName}
-        </div>
+        <div className="admin-content-text pb-4">تعديل المنتج - {prodName}</div>
         <Col sm="8">
           <div className="text-form pb-2"> صور للمنتج</div>
 
@@ -104,8 +101,12 @@ const AdminEditProducts = () => {
           >
             <option value="0">التصنيف الرئيسي</option>
             {category.data
-              ? category.data.map((item) => {
-                  return <option value={item._id}>{item.name}</option>;
+              ? category.data.map((item, index) => {
+                  return (
+                    <option key={index} value={item._id}>
+                      {item.name}
+                    </option>
+                  );
                 })
               : null}
           </select>
@@ -127,14 +128,18 @@ const AdminEditProducts = () => {
           >
             <option value="0">اختر ماركة</option>
             {brand.data
-              ? brand.data.map((item) => {
-                  return <option value={item._id}>{item.name}</option>;
+              ? brand.data.map((item, index) => {
+                  return (
+                    <option key={index} value={item._id}>
+                      {item.name}
+                    </option>
+                  );
                 })
               : null}
           </select>
           <div className="text-form mt-3 "> الالوان المتاحه للمنتج</div>
           <div className="mt-1 d-flex">
-            {colors.length >= 1
+            {Array.isArray(colors) && colors.length >= 1
               ? colors.map((color, index) => {
                   return (
                     <div
